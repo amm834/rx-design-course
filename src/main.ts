@@ -1,9 +1,8 @@
-import {fromEvent} from "rxjs";
+import {Observable, skipUntil, Subject, Subscriber} from "rxjs";
 
-let observable = fromEvent(document, 'mousemove');
+let publisher = Observable.create((subscriber: Subscriber<string | number>) => {
+    let i = 0;
+    setInterval(() => subscriber.next(i++))
+});
 
-setTimeout(() => {
-    observable.subscribe(
-        (x: any) => console.log(x),
-    )
-}, 2000)
+
