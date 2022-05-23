@@ -1,8 +1,9 @@
-import './style.css'
+import {fromEvent} from "rxjs";
 
-const app = document.querySelector<HTMLDivElement>('#app')!
+let observable = fromEvent(document, 'mousemove');
 
-app.innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+setTimeout(() => {
+    observable.subscribe(
+        (x: any) => console.log(x),
+    )
+}, 2000)
